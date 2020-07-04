@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 //package com.in28minuets.springboot.web;
 
 //import org.springframework.boot.SpringApplication;
@@ -16,12 +17,19 @@ import { Component, OnInit } from '@angular/core';
 export class WelcomeComponent implements OnInit {
 
   message = 'Some Welcome Message'
+  name = ''
+  //String message = "Some Welcome Message"
+
   //public SpringBootFirstWebApplication() {
-  constructor() { }
+  
+  //ActivatedRoute
+  constructor(private route:ActivatedRoute) { }
 
   // void init() {
   ngOnInit() {
+    //COMPILATION ERROR this.message = 5
     console.log(this.message)
+    this.name = this.route.snapshot.params['name']
   }
 
 }
