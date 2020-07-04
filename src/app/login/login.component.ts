@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-username = 'in28minuets'
+username = 'Sem'
 password = ''
 errorMessage = 'Invalid Credentials'
 invalidLogin = false
@@ -23,7 +23,7 @@ invalidLogin = false
 
   handleLogin() {
     //console.log(this.username)
-    if(this.username==="in28minuets" && this.password === "dummy") {
+    if(this.username==="Sem" && this.password === "dummy") {
       //Redirect to Welcome Page
       this.router.navigate(['welcome', this.username])
       this.invalidLogin = false
