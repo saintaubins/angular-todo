@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+import { BasicAuthenticationService } from '../service/basic-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ invalidLogin = false
   //Angular.giveMeRouter
   //Dependency Injection
   constructor(private router: Router, 
-    private hardcodedAuthenticationService: HardcodedAuthenticationService) { }
+    private hardcodedAuthenticationService: HardcodedAuthenticationService,
+    private basicAuthenticationService: BasicAuthenticationService) { }
 
   ngOnInit() {
   }
@@ -33,6 +35,23 @@ invalidLogin = false
     } else {
       this.invalidLogin = true
     }
+
+  }
+
+  handleBasicAuthLogin() {
+    //console.log(this.username)
+    //if(this.username==="Sem" && this.password === "dummy") {
+      this.basicAuthenticationService.executeAuthenticationService(this.username, this.password)
+          .subscribe(
+            data => {
+              console.log(data)
+              this.router.navigate(['welcome', this.username])
+              this.invalidLogin = false
+            },
+            error => {
+              console.log(error)
+              this.invalidLogin = true
+            })
 
   }
 
