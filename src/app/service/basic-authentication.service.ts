@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { API_URL } from '../app.constants';
+
+export const TOKEN = 'token'
+export const AUTHENTICATED_USER = 'authenticaterUser'
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +12,6 @@ import { map } from 'rxjs/operators';
 export class BasicAuthenticationService {
 
   constructor(private http: HttpClient) { }
-
-  authenticate(username, password) {
-    //console.log('before '+ this.isUserLoggedIn());
-    if(username==="Sem" && password === "dummy") {
-      sessionStorage.setItem('authenticaterUser', username);
-      //console.log('after '+ this.isUserLoggedIn());
-      return true;
-    }
-      return false;
-  }
 
   executeAuthenticationService(username, password) {
 
@@ -28,11 +22,12 @@ export class BasicAuthenticationService {
     })
 
     return this.http.get<AuthenticationBean>(
-      `http://localhost:8080/basicauth`,
+      `${API_URL}/basicauth`,
     {headers}).pipe(
       map(
         data => {
-          sessionStorage.setItem('authenticaterUser', username);
+          sessionStorage.setItem(AUTHENTICATED_USER, username);
+          sessionStorage.setItem(TOKEN, basicAuthHeaderString);
           return data;
         }
       )
@@ -40,13 +35,22 @@ export class BasicAuthenticationService {
     //console.log("Execute Hello World Bean Service")
   }
 
-  
+  getAuthenticatedUser() {
+    return sessionStorage.getItem(AUTHENTICATED_USER)
+  }
+
+  getAuthenticatedToken() {
+    if(this.getAuthenticatedUser())
+    return sessionStorage.getItem(TOKEN)
+  }
+
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('authenticaterUser')
+    let user = sessionStorage.getItem(AUTHENTICATED_USER)
     return !(user === null)
   }
   logout() {
-    sessionStorage.removeItem('authenticaterUser')
+    sessionStorage.removeItem(AUTHENTICATED_USER)
+    sessionStorage.removeItem(TOKEN)
   }
 }
 
