@@ -1,5 +1,5 @@
+import { TodoDataService } from './../service/data/todo-data.service';
 import { Component, OnInit } from '@angular/core';
-import { TodoDataService } from '../service/data/todo-data.service';
 import { Router } from '@angular/router';
 
 export class Todo {
@@ -12,6 +12,7 @@ export class Todo {
 
   }
 }
+
 @Component({
   selector: 'app-list-todos',
   templateUrl: './list-todos.component.html',
@@ -19,33 +20,35 @@ export class Todo {
 })
 export class ListTodosComponent implements OnInit {
 
-  todos: Todo[] 
+  todos: Todo[]
 
-  message: string 
+  message: string
+
   // = [
   //   new Todo(1, 'Learn to Dance', false, new Date()),
   //   new Todo(2, 'Become an Expert at Angular', false, new Date()),
-  //   new Todo(3, 'Visit India', false, new Date()),
-    // {id : 1, description: 'Learn to Dance'},
-    // {id : 2, description: ''},
-    // {id : 3, description: ''},
-  //]
+  //   new Todo(3, 'Visit India', false, new Date())
+  //   // {id : 1, description : },
+  //   // {id : 2, description : ''},
+  //   // {id : 3, description : 'Visit India'}
+  // ]
+
   // todo = {
-  //   id : 1,
-  //   description: 'Learn to Dance'
+  //     id : 1,
+  //     description: 'Learn to Dance'
   // }
 
   constructor(
     private todoService:TodoDataService,
-    private router: Router
+    private router : Router
   ) { }
 
   ngOnInit() {
-    this.refreshTodos()
+    this.refreshTodos();
   }
 
-  refreshTodos() {
-    this.todoService.retrieveAllTodos('in28minuets').subscribe(
+  refreshTodos(){
+    this.todoService.retrieveAllTodos('in28minutes').subscribe(
       response => {
         console.log(response);
         this.todos = response;
@@ -54,11 +57,11 @@ export class ListTodosComponent implements OnInit {
   }
 
   deleteTodo(id) {
-    console.log(`delete todo ${id}`)
-    this.todoService.deleteTodo('in28minuets', id).subscribe (
+    console.log(`delete todo ${id}` )
+    this.todoService.deleteTodo('in28minutes', id).subscribe (
       response => {
         console.log(response);
-        this.message = `Delete of todo ${id} Successful!`;
+        this.message = `Delete of Todo ${id} Successful!`;
         this.refreshTodos();
       }
     )
@@ -66,10 +69,10 @@ export class ListTodosComponent implements OnInit {
 
   updateTodo(id) {
     console.log(`update ${id}`)
-    this.router.navigate(['todos', id])
+    this.router.navigate(['todos',id])
   }
 
   addTodo() {
-    this.router.navigate(['todos', -1])
+    this.router.navigate(['todos',-1])
   }
 }
