@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { WEB_URL } from 'src/app/app.constants';
 
 
 export class HelloWorldBean {
@@ -17,7 +18,7 @@ export class WelcomeDataService {
   ) { }
 
   executeHelloWorldBeanService() {
-    return this.http.get<HelloWorldBean>('http://localhost:8080/hello-world-bean');
+    return this.http.get<HelloWorldBean>(`${WEB_URL}/hello-world-bean`);
     //console.log("Execute Hello World Bean Service")
   }
   //http://localhost:8080/hello-world/path-variable/in28minutes
@@ -29,7 +30,7 @@ export class WelcomeDataService {
     //   Authorization: basicAuthHeaderString
     // })
 
-    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello-world/path-variable/${name}`,
+    return this.http.get<HelloWorldBean>(`${WEB_URL}/hello-world/path-variable/${name}`,
     //{headers}
     );
     //console.log("Execute Hello World Bean Service")
