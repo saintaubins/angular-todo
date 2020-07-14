@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-//package com.in28minuets.springboot.web;
+//package com.in28minutes.springboot.web;
 
 //import org.springframework.boot.SpringApplication;
 import { Component, OnInit } from '@angular/core';
@@ -7,7 +7,7 @@ import { WelcomeDataService } from '../service/data/welcome-data.service';
 
 
 //@ComponentScan(
-//  value = "com.in28minuets.sprinboot.web")
+//  value = "com.in28minutes.sprinboot.web")
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
