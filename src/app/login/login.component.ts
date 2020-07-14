@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   username = 'in28minutes'
+  //username = this.username = this.route.snapshot.params['username'];
   password = ''
   errorMessage = 'Invalid Credentials'
   invalidLogin = false

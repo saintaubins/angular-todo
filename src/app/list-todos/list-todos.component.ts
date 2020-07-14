@@ -73,6 +73,8 @@ export class ListTodosComponent implements OnInit {
   }
 
   addTodo() {
+    console.log("is this called?")
     this.router.navigate(['todos',-1])
+    //this.refreshTodos();
   }
 }
