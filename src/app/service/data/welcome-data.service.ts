@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { WEB_URL } from 'src/app/app.constants';
+import { WEB_URL, API_URL } from 'src/app/app.constants';
 
 
 export class HelloWorldBean {
