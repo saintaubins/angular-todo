@@ -1,4 +1,4 @@
-import { API_URL } from './../app.constants';
+import { API_URL, WEB_URL } from './../app.constants';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {map} from 'rxjs/operators';
@@ -16,7 +16,7 @@ export class BasicAuthenticationService {
   executeJWTAuthenticationService(username, password) {
     
     return this.http.post<any>(
-      `${API_URL}/authenticate`,{
+      `${WEB_URL}/authenticate`,{
         username,
         password
       }).pipe(
@@ -42,7 +42,7 @@ export class BasicAuthenticationService {
       })
 
     return this.http.get<AuthenticationBean>(
-      `${API_URL}/basicauth`,
+      `${WEB_URL}/basicauth`,
       {headers}).pipe(
         map(
           data => {
